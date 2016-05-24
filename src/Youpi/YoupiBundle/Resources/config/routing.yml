@@ -1,0 +1,7 @@
+youpi_link:
+    resource: "@YoupiBundle/Resources/config/routing/link.yml"
+    prefix:   /
+
+youpi_homepage:
+    path:     /homepageold
+    defaults: { _controller: YoupiBundle:Default:index }

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+  
+{% block body %}
+    <table>
+        <tbody>
+        {% for link in links %}
+            <tr>
+                <td>{{ link.url }}</td>
+                <td>{{ link.title }}</td>
+                <td>{% if link.date %}{{ link.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ link.points }}</td>
+                <td>{{ link.nbCom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('link_show', { 'id': link.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

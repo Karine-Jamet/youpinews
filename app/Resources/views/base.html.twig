@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Youpi News!{% endblock %}</title>
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/index.css') }}" />{% endblock %}
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+  <nav>
+    <h1>YoupiNews</h1>
+    <a href="#">new</a>
+    <p class="sep">|</p>
+    <a href="#">comment</a>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <p class="sep">|</p>
+    <a class="submit" href="{{ path('link_new') }}">submit</a>
+          {% endif %}
+
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <a class="login" href="{{ path('fos_user_security_logout') }}">
+              {{ 'logout'|trans({}, 'FOSUserBundle') }}
+          </a>
+      {% else %}
+          <a class="register" href="{{ path('fos_user_registration_register') }}">register<a>
+          <a class="login" href="{{ path('fos_user_security_login') }}">{{ 'login'|trans({}, 'FOSUserBundle') }}</a>
+      {% endif %}
+  </nav>
+
+        {% block body %}{% endblock %}
+        {% block fos_user_content %}{% endblock fos_user_content %}
+
+      {% if app.request.hasPreviousSession %}
+          {% for type, messages in app.session.flashbag.all() %}
+              {% for message in messages %}
+                  <div class="flash-{{ type }}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          {% endfor %}
+      {% endif %}
+
+
+ {% block javascripts %}{% endblock %}
+</body>
+
+</html>
