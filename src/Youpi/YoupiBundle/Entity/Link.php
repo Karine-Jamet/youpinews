@@ -204,7 +204,7 @@ class Link
     /**
      * Get user
      *
-     * @return \Youpi\UserBundle\Entity\User 
+     * @return \Youpi\UserBundle\Entity\User
      */
     public function getUser()
     {

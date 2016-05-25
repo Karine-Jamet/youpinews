@@ -40,6 +40,14 @@ class LinkController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+                $link->setDate(new \datetime());
+                $link->setPoints(24);
+                $link->setNbCom(0);
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $link->setUser($user);
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($link);
             $em->flush();
