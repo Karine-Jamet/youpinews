@@ -54,6 +54,16 @@ class User extends BaseUser
     }
 
     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Add link_follow
      *
      * @param \Youpi\YoupiBundle\Entity\Link $linkFollow
